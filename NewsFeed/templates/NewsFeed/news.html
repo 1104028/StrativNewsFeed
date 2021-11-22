@@ -1,0 +1,12 @@
+{% extends "NewsFeed/base.html" %}
+{% load static %}
+
+{% block title %}
+  All News From API
+{% endblock %}
+
+{% block content %}
+    {% for title in titles %}
+        <li>{{ title }}</li>
+    {% endfor %}
+{% endblock %}
