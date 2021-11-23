@@ -1,4 +1,4 @@
-{% extends "NewsFeed/base.html" %}
+{% extends "NewsFeed/layouts/base.html" %}
 {% load static %}
 
 {% block title %}
@@ -6,7 +6,25 @@
 {% endblock %}
 
 {% block content %}
-    {% for title in titles %}
-        <li>{{ title }}</li>
+
+<div class="container">
+  
+  
+  <div class="row py-3">
+    <div class="card col-sm-12 mb-3 nopadding result-box">
+      {% for title in titles %}
+          <div class="row no-gutters">
+            <div class="col-sm-10" >
+              <div class="row pl-4 py-2" >
+              <h5 > {{ title }}</h5>
+               
+              </div>
+            </div>
+          </div>
+          <hr>
     {% endfor %}
+
+  </div>
+</div>
+
 {% endblock %}
