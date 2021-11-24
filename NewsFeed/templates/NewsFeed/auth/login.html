@@ -1,5 +1,9 @@
 {% extends "NewsFeed/layouts/loginlayout.html" %}
 
+{% block title %}
+  Login
+{% endblock %}
+
 {% block content %} 
 
 <!--Login--> 
@@ -29,21 +33,21 @@
                 
                 <div class="flex-sb-m w-full p-t-3 p-b-24">
                     <div>
-                        <a href="#" class="txt1">
+                        <a href="#" class="txt1" style="color:#ED6C1C;">
                             Forgot Password? 
                         </a>
                     </div>
                 </div> 
               
                 <div class="container-login100-form-btn m-t-17">
-                    <input class="login100-form-btn" type="submit" value="Login">
+                    <input class="login100-form-btn" type="submit" value="Login" style="background-color:#ED6C1C;">
                         
                 </div>
                 <div class="col-sm-12">
                     <hr/> 
                 </div>
                 <div class="container-login100-form-btn m-t-17">
-                    <a href="{% url 'register' %}" class="login100-form-btn">
+                    <a href="{% url 'register' %}" class="login100-form-btn" style="background-color:#ED6C1C;">
                         Sign Up
                     </a>
                 </div>

@@ -14,13 +14,17 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 	<!--===============================================================================================-->
-    <title>All News</title>
+    <title>
+	  {% block title %}
+		
+	  {% endblock %}
+	</title>
   </head>
   <body>
   
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	  <a class="navbar-brand ml-5" href="#">
-		<img src="#" width="40%" height="40%" alt="" loading="lazy">
+		<img src="{% static 'img/logo.png' %}" width="40%" height="40%" alt="" loading="lazy">
 	  </a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -33,9 +37,9 @@
                     <a class="nav-link nav-item-text" href="#" id="lnkLogOut" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                        <a class="dropdown-item" href="/Home/AutomaticSwitching"><i class="fa fa-user-add"></i>Add Country</a>
-                        <a class="dropdown-item" href="/Home/BlindOperation"><i class="fa fa-user-add"></i>Add Source</a>
-                        <a class="dropdown-item" href="/Home/BlindOperation"><i class="fa fa-user-add"></i>Add Keyword</a>
+                        <a class="dropdown-item" href="{% url 'country' %}"><i class="fa fa-user-add"></i>Add Country</a>
+                        <a class="dropdown-item" href="{% url 'source' %}"><i class="fa fa-user-add"></i>Add Source</a>
+                        <a class="dropdown-item" href="{% url 'keyword' %}"><i class="fa fa-user-add"></i>Add Keyword</a>
 
                     </div>
                 </li>

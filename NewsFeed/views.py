@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 import requests
-from .forms import NewUserForm, LoginForm
+from .forms import NewUserForm, LoginForm,KeywordForm
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-
+from .models import Countries,Sources,Keywords,Mapper
 # Create your views here.
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 def getapinews(request):
     option = request.GET['option']
@@ -73,3 +74,58 @@ def userlogout(request):
 
 def forgotpassword(request):
     pass
+
+def usercountry(request):
+    if request.method == "POST":
+            selectedcountries = request.POST.getlist('selectedcountries')
+            insertedlist=[]
+            for item in selectedcountries:
+                insertedlist.append(Mapper.objects.create(itemName='Country',selecteddata=item,user = User.objects.get(pk=request.user)))
+            try:
+                Mapper.objects.bulk_create(insertedlist, batch_size=None, ignore_conflicts=False)
+            except:
+                pass
+            response = redirect("allnews")
+            response['Location'] += '?option=country'
+            return response
+
+    all_countries = Countries.objects.all()
+    return render(request, "NewsFeed/countrysettings,html",{'allcountries': all_countries})
+
+def usersource(request):
+    if request.method == "POST":
+            selectedsources = request.POST.getlist('selectedsources')
+            print(selectedsources)
+            insertedlist=[]
+            for item in selectedsources:
+                insertedlist.append(Mapper.objects.create(itemName='Source',selecteddata=item,user = User.objects.get(pk=request.user)))
+            try:
+                Mapper.objects.bulk_create(insertedlist, batch_size=None, ignore_conflicts=False)
+            except:
+                pass
+            response = redirect("allnews")
+            response['Location'] += '?option=country'
+            return response
+            
+    all_sources = Sources.objects.all()
+    return render(request, "NewsFeed/sourcesettings.html",{'allsources': all_sources})
+
+def addkeywords(request):
+    if request.method == "POST":
+        form = KeywordForm(request.POST)
+        if form.is_valid():
+            add_keyword = Keywords.objects.create(
+                user = User.objects.get(pk=request.user),
+                keyword = form.cleaned_data["keywordname"]
+            )
+            add_keyword.save()
+            messages.success(request, "Keyword has been added successfully.")
+            response = redirect("allnews")
+            response['Location'] += '?option=country'
+            return response
+        else:
+            messages.error(request,form.errors)
+    else:
+        form = KeywordForm()
+        userkeywords= Keywords.objects.filter(user=request.user).values('keyword','created')
+        return render(request, "NewsFeed/addkeyword.html", {"keyword_form": form,'userkeywords':userkeywords})

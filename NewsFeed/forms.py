@@ -20,3 +20,6 @@ class NewUserForm(UserCreationForm):
 class LoginForm(forms.Form):
     username = forms.CharField(label='Your user name', max_length=100)
     password = forms.CharField()
+
+class KeywordForm(forms.Form):
+    keywordname = forms.CharField(label='Keyword', max_length=150)

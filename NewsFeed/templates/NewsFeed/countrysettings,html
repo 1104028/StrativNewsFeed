@@ -1,0 +1,100 @@
+{% extends "NewsFeed/layouts/base.html" %}
+{% load static %}
+
+{% block title %}
+  Country Settings
+{% endblock %}
+
+{% block content %}
+<br />
+<br />
+<div class="peb-section-header text-center">
+    <h3 class="text-white" style="color:black!important">Country Settings</h3>
+    <hr>
+</div>
+<br />
+<br />
+<style>
+  table, tr, th, td {
+      text-align: center;
+  }
+
+  table {
+      border-left: 1px solid #dee2e6;
+      border-right: 1px solid #dee2e6;
+      border-bottom: 1px solid #dee2e6;
+  }
+
+  td {
+      color: white;
+  }
+
+      td a {
+          color: #f9cc41;
+      }
+
+          td a:hover {
+              color: red;
+          }
+</style>
+<form action="{% url 'country' %}" method="POST">
+  {% csrf_token %}
+  <div class="container">
+
+    <div class="row">
+        <div class="col-lg-3 col-md-5">
+        </div>
+        <div class="col-lg-6 col-md-2">
+          <div class="form-horizontal" >
+            <br />
+          <table class="table" style="width:500px!important; border:2px solid #007bff!important">
+  {% for country in allcountries %}
+  <tr>
+
+      <td style="width:50px;padding-right:5px!important;text-align:right">
+
+        <input type="checkbox" name="selectedcountries" id="option{{country.id}}" value={{country.countryName}} />
+
+      </td>
+      <td style="width:300px!important;text-align:left;margin:20px!important;padding-left:0!important;color:black!important">
+        <b>{{country.countryName}}</b>
+      </td>
+      
+  </tr>
+  {% endfor %}
+
+          </table>
+        </div>
+
+      </div>
+      <div class="col-lg-3 col-md-5">
+      </div>
+  </div>
+  </div>
+
+<div class="container">
+
+  <div class="row">
+      <div class="col-lg-3 col-md-5">
+      </div>
+      <div class="col-lg-6 col-md-2">
+          <div class="form-horizontal" >
+              <br />
+              <div class="form-group" >
+                  <div class="form-group has-feedback" >
+                      <input type="submit" id="originalbutton" name="originalbutton" value="Submit" class="btn btn-default form-control text-box single-line" style="background-color:#ED6C1C !important;color:white;font-size:18px"  />
+                  </div>
+
+              </div>
+          </div>
+
+      </div>
+      <div class="col-lg-3 col-md-5">
+      </div>
+  </div>
+</div>
+</form>
+ 
+
+
+{% endblock %}
