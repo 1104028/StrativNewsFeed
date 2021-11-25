@@ -1,0 +1,61 @@
+{% extends "NewsFeed/layouts/base.html" %}
+
+{% block title %}
+Generate Token
+{% endblock %}
+
+{% block content %}
+
+<!--Login-->
+
+<div class="limiter">
+    <div class="container-login100" style="min-height: 10vh!important;">
+        <div class="wrap-login100 p-t-10 p-b-90">
+            {% for message in messages %}
+            <p style="color: red;"> {{ message }} </p>
+            {% endfor %}
+            <form action="{% url 'generatetoken' %}" method="POST" class="login100-form validate-form flex-sb flex-w">
+                <span class="login100-form-title p-b-35">
+                    Generate Token for using API
+                </span>
+                {% csrf_token %}
+                <div class="container-login100-form-btn m-t-17">
+                    <input class="login100-form-btn" type="submit" value="Add keyword">
+
+                </div>
+                <div class="col-sm-12">
+                    <hr/>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="peb-section-header text-center">
+    <h3 class="text-white" style="color:black!important">Your Token</h3>
+    <hr>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-3 col-md-5">
+        </div>
+        <div class="col-lg-6 col-md-2">
+            <div class="form-horizontal">
+                <br/>
+
+                <table class="table" style="width:500px!important; border:2px solid #007bff!important">
+                    <tr>
+                        <td style="text-align:center;margin:20px!important;padding-left:0!important;color:black!important">
+                            <b>{{ usertoken }}</b>
+                        </td>
+
+                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
