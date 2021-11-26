@@ -14,13 +14,12 @@ Generate Token
             {% for message in messages %}
             <p style="color: red;"> {{ message }} </p>
             {% endfor %}
-            <form action="{% url 'generatetoken' %}" method="POST" class="login100-form validate-form flex-sb flex-w">
+            <form action="{% url 'generatetoken' %}" method="GET" class="login100-form validate-form flex-sb flex-w">
                 <span class="login100-form-title p-b-35">
                     Generate Token for using API
                 </span>
-                {% csrf_token %}
                 <div class="container-login100-form-btn m-t-17">
-                    <input class="login100-form-btn" type="submit" value="Add keyword">
+                    <input class="login100-form-btn" type="submit" value="Generate">
 
                 </div>
                 <div class="col-sm-12">

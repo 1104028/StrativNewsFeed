@@ -50,12 +50,15 @@
           <table class="table" style="width:500px!important; border:2px solid #007bff!important">
   {% for country in allcountries %}
   <tr>
-
+      
       <td style="width:50px;padding-right:5px!important;text-align:right">
-
+        {% if country.countryName in userallcountries %}
+        <input type="checkbox"  name="selectedcountries" id="option{{country.id}}" value={{country.countryName}} checked />
+        {% else %}
         <input type="checkbox" name="selectedcountries" id="option{{country.id}}" value={{country.countryName}} />
-
+        {% endif  %}
       </td>
+         
       <td style="width:300px!important;text-align:left;margin:20px!important;padding-left:0!important;color:black!important">
         <b>{{country.countryName}}</b>
       </td>

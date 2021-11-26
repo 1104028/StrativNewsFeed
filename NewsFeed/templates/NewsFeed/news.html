@@ -2,32 +2,58 @@
 {% load static %}
 
 {% block title %}
-  All News From API
+All News From API
 {% endblock %}
 
 {% block content %}
+<script>
+    var minutes=15;
+    totalsecond=minutes*60*10000;
+    var intervalId = setInterval(function() {
+       location.reload();
+}, totalsecond);
 
+
+</script>
 <div class="container">
-  {% for message in messages %}
-  <p style="color: green;"> {{ message }} </p>
-  {% endfor %}
-  
-  <div class="row py-3">
-    <div class="card col-sm-12 mb-3 nopadding result-box">
-      {% for title in titles %}
-          <div class="row no-gutters">
-            <div class="col-sm-10" >
-              <div class="row pl-4 py-2" >
-              <h5 > {{ title }}</h5>
-               
-              </div>
-            </div>
-          </div>
-          <hr>
-    {% endfor %}
+    <div class="row py-3">
+        {% for message in messages %}
+        <p style="color: green;"> {{ message }} </p>
+        {% endfor %}
+        {% for news in page_obj %}
+        <div class="col-md-4">
+            <a href="{{ news.url }}" target="_blank">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="{{ news.imageurl }}" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ news.source }}</h4>
+                        <p class="card-text">{{ news.title }}</p>
 
-  </div>
-</div>
+                    </div>
+                </div>
+            </a>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
 </div>
 
 

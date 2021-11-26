@@ -1,27 +1,29 @@
 {% extends "NewsFeed/layouts/base.html" %}
 
 {% block title %}
-  Add keyword
+Add keyword
 {% endblock %}
 
-{% block content %} 
+{% block content %}
 
 <!--Login-->
 
-  <div class="limiter">
-    <div class="container-login100">
+<div class="limiter">
+    <div class="container-login100" style="min-height: 10vh!important;">
         <div class="wrap-login100 p-t-10 p-b-90">
-                {% for message in messages %}
-                <p style="color: red;"> {{ message }} </p>
-                {% endfor %}
+            {% for message in messages %}
+            <p style="color: red;"> {{ message }} </p>
+            {% endfor %}
             <form action="{% url 'keyword' %}" method="POST" class="login100-form validate-form flex-sb flex-w">
                 <span class="login100-form-title p-b-35">
                     Add keyword
                 </span>
                 {% csrf_token %}
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate = "keywordname is required">
-                    <input class="input100" type="text" name="keywordname"  autofocus autocapitalize="none" autocomplete="keywordname" maxlength="150" required id="id_keywordname" placeholder="keywordname">
+                <div class="wrap-input100 validate-input m-b-16" data-validate="keywordname is required">
+                    <input class="input100" type="text" name="keywordname" autofocus autocapitalize="none"
+                           autocomplete="keywordname" maxlength="150" required id="id_keywordname"
+                           placeholder="keywordname">
                     <span class="focus-input100"></span>
 
                 </div>
@@ -33,7 +35,7 @@
                 <div class="col-sm-12">
                     <hr/>
                 </div>
-                
+
             </form>
         </div>
     </div>
@@ -43,28 +45,32 @@
     <hr>
 </div>
 <div class="container">
-
     <div class="row">
         <div class="col-lg-3 col-md-5">
         </div>
         <div class="col-lg-6 col-md-2">
-          <div class="form-horizontal" >
-            <br />
-          <table class="table" style="width:500px!important; border:2px solid #007bff!important">
-        {% for keyword in userkeywords %}
-        <tr>
-            <td style="text-align:left;margin:20px!important;padding-left:0!important;color:black!important">
-              <b>{{keyword.keyword}}</b>
-            </td>
-            <td style="text-align:left;margin:20px!important;padding-left:0!important;color:black!important">
-                <b>{{keyword.created}}</b>
-              </td>
-        </tr>
-            <hr>
-      {% endfor %}
-  
-    </div>
-  </div>
-  </div>
+            <div class="form-horizontal">
+                <br/>
 
+                <table class="table" style="width:500px!important; border:2px solid #007bff!important">
+                    <th>
+                    <td style="text-align:center;padding-left:0!important;color:black!important">KeyworName</td>
+                    <td style="text-align:center;padding-left:0!important;color:black!important">CreateDate</td>
+                    </th>
+                    {% for keyword in userkeywords %}
+                    <tr>
+                        <td style="text-align:center;margin:20px!important;padding-left:0!important;color:black!important">
+                            <b>{{keyword.keyword}}</b>
+                        </td>
+                        <td style="text-align:center;margin:20px!important;padding-left:0!important;color:black!important">
+                            <b>{{keyword.created}}</b>
+                        </td>
+                    </tr>
+                    <hr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
