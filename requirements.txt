@@ -1,0 +1,11 @@
+pytz==2021.3  # https://github.com/stub42/pytz
+requests==2.26.0
+APScheduler==3.8.1
+# Django
+# ------------------------------------------------------------------------------
+django==3.2.9  # pyup: < 3.2  # https://www.djangoproject.com/
+django-crispy-forms==1.13.0  # https://github.com/django-crispy-forms/django-crispy-forms
+# Django REST Framework
+djangorestframework==3.12.4  # https://github.com/encode/django-rest-framework
+
+
