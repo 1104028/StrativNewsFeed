@@ -10,9 +10,10 @@ def schedule_api():
     allcountries = Countries.objects.all().values_list('countryName', flat=True)
     allnews = NewsItem.objects.all().values_list('title', flat=True)
     insertedlist = []
+    apikey=''
     # NewsItem.objects.all().delete()
     for country in allcountries:
-        api_url = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=business&apiKey=870fc67670de409b8243be8052873a8e"
+        api_url = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=business&apiKey="+apikey+"
         r = requests.get(api_url)
         if r.status_code == 200:
             articles = r.json()["articles"]
